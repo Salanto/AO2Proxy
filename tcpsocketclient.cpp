@@ -6,7 +6,7 @@ TcpSocketClient::TcpSocketClient(QTcpSocket* socket, bool debug, QObject *parent
     m_debug(debug)
 {
     if (m_debug)
-        qInfo() << "Connected socket on 127.0.0.1 on port" << m_socket->peerPort();
+        qInfo() << "[TCPClient]::Connect: Connected AO2-Client on 127.0.0.1 on port" << m_socket->peerPort();
 
     connect(m_socket, &QAbstractSocket::readyRead,
             this, &TcpSocketClient::receiveDataFromClient);

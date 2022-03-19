@@ -22,6 +22,7 @@ private slots:
     void onConnected();
     void onTextMessageReceived(QString message);
     void onError();
+    void onStateChanged(QAbstractSocket::SocketState f_state);
 
 private:
     QWebSocket* m_webSocket;

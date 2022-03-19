@@ -10,10 +10,10 @@ TcpSocketServer::TcpSocketServer(const int port, bool debug, QObject *parent) :
     connect(m_tcp_server, &QTcpServer::newConnection,
             this, &TcpSocketServer::newConnection);
     if(!m_tcp_server->listen(QHostAddress::LocalHost,port)) {
-        qDebug() << "Proxy error:" << m_tcp_server->errorString();
+        qDebug() << "[TCPServer]::Error: Proxy error:" << m_tcp_server->errorString();
     }
     else {
-        qDebug() << "Proxy listening on port" << port;
+        qDebug() << "[TCPServer]::Start: Proxy listening on port" << port;
     }
 }
 
@@ -40,12 +40,11 @@ void TcpSocketServer::newConnection()
 
     //All connected, start phase 2.
     m_web_client->startWebsocket();
-    m_tcp_client->receiveDataFromWebSocket("decryptor#NOENCRYPT#%");
 }
 
 void TcpSocketServer::onClientDisconnect()
 {
-    qDebug() << "Destroying connection.";
+    qDebug() << "[TCPServer]::Info: Disconnected. Destroying connection.";
     if (m_tcp_client != nullptr)
     m_tcp_client->deleteLater();
 

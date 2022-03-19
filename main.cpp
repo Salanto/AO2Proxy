@@ -3,11 +3,6 @@
 
 TcpSocketServer* m_tcp_server;
 
-void onError()
-{
-
-}
-
 int main(int argc, char *argv[])
 {
     QCoreApplication AProxy(argc, argv);
