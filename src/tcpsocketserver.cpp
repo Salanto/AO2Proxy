@@ -15,6 +15,8 @@ TcpSocketServer::TcpSocketServer(const int port, bool debug, QObject *parent) :
     else {
         qDebug() << "[TCPServer]::Start: Proxy listening on port" << port;
     }
+
+    m_settings = new QSettings("config.ini", QSettings::IniFormat);
 }
 
 TcpSocketServer::~TcpSocketServer()

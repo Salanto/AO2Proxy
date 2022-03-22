@@ -25,6 +25,6 @@ CONFIG -= \
         debug_and_release \
         debug_and_release_target
 
-DESTDIR = $$PWD/../bin
+DESTDIR = $$PWD/bin
 
 INCLUDEPATH = $$PWD/include

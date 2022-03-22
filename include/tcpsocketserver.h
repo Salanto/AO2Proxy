@@ -37,6 +37,11 @@ private:
      * @brief m_web_client A dummy client that interacts as a WebAO client.
      */
     WebSocketClient* m_web_client;
+
+    /**
+     * @brief m_settings Stores the setting info on bootime.
+     */
+    QSettings* m_settings;
 };
 
 #endif // TCPSOCKETSERVER_H
