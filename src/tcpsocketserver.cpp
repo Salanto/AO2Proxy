@@ -12,10 +12,8 @@ TcpSocketServer::TcpSocketServer(const int port, bool debug, QObject *parent) :
         qDebug() << "[TCPServer]::Error: Proxy error:" << m_tcp_server->errorString();
     }
     else {
-        qDebug() << "[TCPServer]::Start: Proxy listening on port" << port;
+        qInfo() << "[TCPServer]::Start: Proxy listening on port" << port;
     }
-
-    m_settings = new QSettings("config.ini", QSettings::IniFormat);
 }
 
 TcpSocketServer::~TcpSocketServer()
@@ -44,7 +42,7 @@ void TcpSocketServer::newConnection()
 
 void TcpSocketServer::onClientDisconnect()
 {
-    qDebug() << "[TCPServer]::Info: Disconnected. Destroying connection.";
+    qInfo() << "[TCPServer]::Info: Disconnected. Destroying connection.";
     if (m_tcp_client != nullptr)
         m_tcp_client->deleteLater();
 
