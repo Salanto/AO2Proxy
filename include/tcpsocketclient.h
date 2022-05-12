@@ -7,26 +7,27 @@
 class TcpSocketClient : public QObject
 {
     Q_OBJECT
-public:
+
+  public:
     explicit TcpSocketClient(QTcpSocket *socket, bool debug, QObject *parent = nullptr);
 
-signals:
-    //Writes data to the Websocket instance.
+  signals:
+    // Writes data to the Websocket instance.
     void writeDataToWebsocket(QString f_message);
 
-    //Signals a disconnect. This means we have to destroy the connection.
+    // Signals a disconnect. This means we have to destroy the connection.
     void clientDisconnected();
 
-public slots:
+  public slots:
 
-    //Reads data from the websocket and sends it to the tcp socket.
+    // Reads data from the websocket and sends it to the tcp socket.
     void receiveDataFromWebSocket(QString f_message);
 
-    //Reads data from the AO2-Client
+    // Reads data from the AO2-Client
     void receiveDataFromClient();
 
-private:
-    QTcpSocket* m_socket;
+  private:
+    QTcpSocket *m_socket;
     bool m_debug;
 
     /**
@@ -38,7 +39,6 @@ private:
      * @brief Flag that is set when packets are segmented
      */
     bool is_segmented = false;
-
 };
 
 #endif // TCPSOCKETCLIENT_H

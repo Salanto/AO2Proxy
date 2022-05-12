@@ -1,6 +1,6 @@
 #include "tcpsocketclient.h"
 
-TcpSocketClient::TcpSocketClient(QTcpSocket* socket, bool debug, QObject *parent) :
+TcpSocketClient::TcpSocketClient(QTcpSocket *socket, bool debug, QObject *parent) :
     QObject(parent),
     m_socket(socket),
     m_debug(debug)
@@ -10,7 +10,7 @@ TcpSocketClient::TcpSocketClient(QTcpSocket* socket, bool debug, QObject *parent
 
     connect(m_socket, &QAbstractSocket::readyRead,
             this, &TcpSocketClient::receiveDataFromClient);
-    connect(m_socket,&QAbstractSocket::disconnected,
+    connect(m_socket, &QAbstractSocket::disconnected,
             this, &TcpSocketClient::clientDisconnected);
 }
 
@@ -43,7 +43,7 @@ void TcpSocketClient::receiveDataFromClient()
     // Workaround for WebAO bug needing every packet in its own message
     QStringList all_packets = QString::fromUtf8(tcp_message).split("%");
     all_packets.removeLast(); // Remove empty space after final delimiter
-    for(const QString &packet : qAsConst(all_packets)) {
-         emit writeDataToWebsocket(packet + "%");
+    for (const QString &packet : qAsConst(all_packets)) {
+        emit writeDataToWebsocket(packet + "%");
     }
 }

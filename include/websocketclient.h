@@ -7,29 +7,30 @@
 class WebSocketClient : public QObject
 {
     Q_OBJECT
-public:
+
+  public:
     explicit WebSocketClient(const QUrl &url, bool debug = true, QObject *parent = nullptr);
 
     void startWebsocket();
 
-Q_SIGNALS:
+  Q_SIGNALS:
     void closed();
 
-public slots:
+  public slots:
     void writeToSocket(QString message);
 
-private slots:
+  private slots:
     void onConnected();
     void onTextMessageReceived(QString message);
     void onError();
     void onStateChanged(QAbstractSocket::SocketState f_state);
 
-private:
-    QWebSocket* m_webSocket;
+  private:
+    QWebSocket *m_webSocket;
     QUrl m_url;
     bool m_debug;
 
-signals:
+  signals:
     void onTextMessageProcessed(QString message);
 };
 

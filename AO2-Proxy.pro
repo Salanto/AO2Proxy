@@ -12,12 +12,14 @@ SOURCES += \
         src/main.cpp \
         src/tcpsocketclient.cpp \
         src/tcpsocketserver.cpp \
-        src/websocketclient.cpp
+        src/websocketclient.cpp \
+        src/configmanager.cpp
 
 HEADERS += \
     include/tcpsocketclient.h \
     include/tcpsocketserver.h \
-    include/websocketclient.h
+    include/websocketclient.h \
+    include/configmanager.h
 
 
 CONFIG -= \

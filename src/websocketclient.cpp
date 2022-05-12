@@ -20,7 +20,7 @@ WebSocketClient::WebSocketClient(const QUrl &url, bool debug, QObject *parent) :
 void WebSocketClient::startWebsocket()
 {
     QNetworkRequest l_request(QUrl(QStringLiteral("ws://ao.fantacrypt.com:80")));
-    l_request.setHeader(QNetworkRequest::UserAgentHeader,"AO2ClientWebsocketProxy");
+    l_request.setHeader(QNetworkRequest::UserAgentHeader, "AO2ClientWebsocketProxy");
     if (m_debug)
         qDebug() << "[Websocket]::Info: Connecting to" << m_url.toString();
     m_webSocket->open(l_request);
@@ -29,7 +29,7 @@ void WebSocketClient::startWebsocket()
 void WebSocketClient::onTextMessageReceived(QString message)
 {
     if (m_debug)
-            qDebug() << "[Websocket]::Network: Message received:" << message;
+        qDebug() << "[Websocket]::Network: Message received:" << message;
     emit onTextMessageProcessed(message);
 }
 
@@ -54,6 +54,4 @@ void WebSocketClient::onConnected()
 {
     if (m_debug)
         qDebug() << "[Websocket]::Info: Connected.";
-
 }
-

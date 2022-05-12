@@ -50,3 +50,7 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+
+# Configuration file & Executable
+bin/config.ini
+bin/AO2Proxy.exe
