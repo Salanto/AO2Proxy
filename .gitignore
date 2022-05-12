@@ -53,4 +53,4 @@ compile_commands.json
 
 # Configuration file & Executable
 bin/config.ini
-bin/AO2Proxy.exe
+bin/AO2-Proxy.exe
