@@ -25,3 +25,26 @@ jobs:
         clang-format-version: '14'
         check-path: '.'
       
+  build-windows:
+    needs: formatting-check
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+     
+      - name: Build
+        run: |
+          cd $Env:GITHUB_WORKSPACE
+          qmake "CONFIG += qtquickcompiler" AO2-Proxy.pro
+          nmake
+          windeployqt bin\AO2-Proxy.exe --release --no-opengl-sw
+ 
+      - name: Upload zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: proxy-windows
+          path: bin\
