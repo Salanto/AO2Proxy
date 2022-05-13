@@ -12,7 +12,7 @@ class TcpSocketServer : public QObject
     Q_OBJECT
 
   public:
-    explicit TcpSocketServer(const int port, bool debug, QObject *parent = nullptr);
+    explicit TcpSocketServer(const int port, QObject *parent = nullptr);
     ~TcpSocketServer();
 
   signals:

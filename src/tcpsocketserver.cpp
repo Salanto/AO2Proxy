@@ -1,9 +1,10 @@
 #include "tcpsocketserver.h"
+#include "configmanager.h"
 
-TcpSocketServer::TcpSocketServer(const int port, bool debug, QObject *parent) :
+TcpSocketServer::TcpSocketServer(const int port, QObject *parent) :
     QObject(parent),
     m_port(port),
-    m_debug(debug)
+    m_debug(ConfigManager::showDebug())
 {
     m_tcp_server = new QTcpServer(this);
     connect(m_tcp_server, &QTcpServer::newConnection,
@@ -26,7 +27,7 @@ void TcpSocketServer::newConnection()
     m_tcp_client = new TcpSocketClient(l_socket, m_debug, this);
     connect(m_tcp_client, &TcpSocketClient::clientDisconnected,
             this, &TcpSocketServer::onClientDisconnect);
-    m_web_client = new WebSocketClient(QUrl(QStringLiteral("ws://ao.fantacrypt.com:80")), m_debug, this);
+    m_web_client = new WebSocketClient(QUrl(ConfigManager::hostname()), m_debug, this);
 
     // TCP -> WebSocket
     connect(m_tcp_client, &TcpSocketClient::writeDataToWebsocket,

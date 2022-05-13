@@ -1,19 +1,18 @@
 #include "configmanager.h"
+#include <QDebug>
 
-QSettings *ConfigManager::m_settings = new QSettings("config/config.ini", QSettings::IniFormat);
+QSettings *ConfigManager::m_settings = new QSettings("config.ini", QSettings::IniFormat);
 
 QString ConfigManager::hostname()
 {
-    return m_settings->value("Configuration/server_ip", "localhost").toString();
-}
-
-int ConfigManager::remotePort()
-{
-    return m_settings->value("Configuration/remote_port", "80").toInt();
+    QString l_hostname = m_settings->value("Configuration/server_ip", "localhost").toString();
+    QString l_remote_port = m_settings->value("Configuration/remote_port", "80").toString();
+    return QString("ws://%1:%2").arg(l_hostname, l_remote_port);
 }
 
 int ConfigManager::localPort()
 {
+    qDebug() << m_settings->value("Configuration/local_port", "8080").toInt();
     return m_settings->value("Configuration/local_port", "8080").toInt();
 }
 
