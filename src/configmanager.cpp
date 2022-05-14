@@ -12,7 +12,6 @@ QString ConfigManager::hostname()
 
 int ConfigManager::localPort()
 {
-    qDebug() << m_settings->value("Configuration/local_port", "8080").toInt();
     return m_settings->value("Configuration/local_port", "8080").toInt();
 }
 
