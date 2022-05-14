@@ -19,7 +19,7 @@ WebSocketClient::WebSocketClient(const QUrl &url, bool debug, QObject *parent) :
 
 void WebSocketClient::startWebsocket()
 {
-    QNetworkRequest l_request(QUrl(QStringLiteral("ws://ao.fantacrypt.com:80")));
+    QNetworkRequest l_request((QUrl(m_url)));
     l_request.setHeader(QNetworkRequest::UserAgentHeader, "AO2ClientWebsocketProxy");
     if (m_debug)
         qInfo() << "[Websocket]::Info: Connecting to" << m_url.toString();
